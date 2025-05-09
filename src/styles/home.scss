@@ -1,0 +1,156 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #CCC;
+  overflow: hidden;
+
+  .content {
+    max-width: 800px;
+    width: 100%;
+    background-color: #fff;
+    overflow-y: auto;
+
+    .header {
+      background-color: #7695EC;
+      height: 80px;
+      display: flex;
+      align-items: center;
+
+      h1 {
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 0;
+        margin-left: 37px;
+      }
+    }
+
+    .main {
+      margin: 24px;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #999999;
+        padding: 24px;
+
+        h1 {
+          font-size: 22px;
+          line-height: 22px;
+          font-weight: 700;
+          margin: 0;
+          margin-bottom: 24px;
+        }
+
+        .input-group {
+          display: flex;
+          flex-direction: column;
+
+          &:nth-child(2) {
+            margin-bottom: 24px;
+          }
+
+          label {
+            font-size: 16px;
+            line-height: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+          }
+
+          input,
+          textarea {
+            border-radius: 8px;
+            border: 1px solid #999999;
+            font-size: 16px;
+            line-height: 16px;
+            padding: 12px;
+          }
+
+          textarea {
+            height: 100px;
+          }
+        }
+
+        button {
+          padding: 0.5rem;
+          background-color: #7695EC;
+          color: white;
+          border: none;
+          margin-top: 24px;
+          width: 110px;
+          align-self: end;
+        }
+      }
+
+      .post {
+        background: white;
+        border-radius: 8px;
+        margin-top: 1rem;
+        border: 1px solid #999999;
+        overflow: hidden;
+
+        .post-header {
+          height: 70px;
+          background-color: #7695EC;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 24px;
+
+          h3 {
+            color: #ffffff;
+            margin: 0;
+            text-transform: capitalize;
+          }
+
+          .post-actions {
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            justify-content: center;
+
+            button {
+              margin-right: 0.5rem;
+              padding: 0.3rem 0.6rem;
+              border: none;
+              cursor: pointer;
+              background-color: transparent;
+              flex-shrink: 0;
+              width: 30px;
+              height: 30px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 0;
+            }
+          }
+        }
+
+
+        .post-content {
+          padding: 24px;
+
+          .post-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+
+            span {
+              font-size: 18px;
+              color: #777777;
+            }
+          }
+
+          p {
+            padding: 0;
+            margin: 0;
+
+          }
+        }
+      }
+    }
+  }
+}
