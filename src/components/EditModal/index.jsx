@@ -16,27 +16,9 @@ export default function EditModal({ states, onSubmit, onCancel }) {
   return (
     <div className="modal-backdrop">
       <form className="modal" onSubmit={handleSubmit}>
-        <h2
-          style={{
-            fontSize: "1.5rem",
-            fontWeight: "bold",
-            margin: 0,
-            padding: 0,
-            marginBottom: "1rem",
-          }}
-        >
-          Edit item
-        </h2>
-
-        <div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              marginBottom: "1rem",
-              gap: "0.5rem",
-            }}
-          >
+        <h2>Edit item</h2>
+        <div className="modal-fields">
+          <div className="modal-field">
             <label htmlFor="title">Title</label>
             <input
               type="text"
@@ -51,13 +33,7 @@ export default function EditModal({ states, onSubmit, onCancel }) {
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "0.5rem",
-            }}
-          >
+          <div className="modal-field">
             <label htmlFor="content">Content</label>
             <textarea
               id="content"
@@ -73,21 +49,13 @@ export default function EditModal({ states, onSubmit, onCancel }) {
             />
           </div>
         </div>
-
-        <div
-          style={{
-            display: "flex",
-            marginTop: "1rem",
-            gap: `16px`,
-            justifyContent: "flex-end",
-          }}
-        >
+        <div className="modal-actions">
           <button type="button" onClick={onCancel}>
             Cancel
           </button>
           <button type="submit">Save</button>
         </div>
-      </form>
-    </div>
+      </form >
+    </div >
   )
 }
