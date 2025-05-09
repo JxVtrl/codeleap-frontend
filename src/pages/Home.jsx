@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react"
 import { fetchPosts, createPost, updatePost, deletePost } from "../services/api"
 import "../styles/home.scss"
+import EditModal from "../components/EditModal"
+import DeleteModal from "../components/DeleteModal"
 export default function Home({ username }) {
   const [posts, setPosts] = useState([])
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const [editing, setEditing] = useState(null)
+  const [deleting, setDeleting] = useState(null)
   const loadPosts = async () => {
     try {
       const response = await fetchPosts()
@@ -15,18 +18,18 @@ export default function Home({ username }) {
     }
   }
 
+  const resetForm = () => {
+    setTitle("")
+    setContent("")
+    setEditing(null)
+    loadPosts()
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      if (editing) {
-        await updatePost(editing.id, { title, content })
-        setEditing(null)
-      } else {
-        await createPost({ username, title, content })
-      }
-      setTitle("")
-      setContent("")
-      loadPosts()
+      await createPost({ username, title, content })
+      resetForm()
     } catch (err) {
       console.error("Erro ao salvar post:", err)
     }
@@ -45,6 +48,10 @@ export default function Home({ username }) {
     setEditing(post)
     setTitle(post.title)
     setContent(post.content)
+  }
+
+  const handleDeleteClick = (post) => {
+    setDeleting(post)
   }
 
   useEffect(() => {
@@ -114,7 +121,7 @@ export default function Home({ username }) {
                 <h3>{post.title}</h3>
                 {post.username === username && (
                   <div className="post-actions">
-                    <button onClick={() => handleDelete(post.id)}>
+                    <button onClick={() => handleDeleteClick(post)}>
                       <svg
                         width="19"
                         height="24"
@@ -163,6 +170,33 @@ export default function Home({ username }) {
           ))}
         </div>
       </div>
+      {editing && (
+        <EditModal
+          states={{
+            title,
+            content,
+          }}
+          onSubmit={async ({ title, content }) => {
+            await updatePost(editing.id, { title, content })
+            resetForm()
+          }}
+          onCancel={() => {
+            resetForm()
+          }}
+        />
+      )}
+
+      {deleting && (
+        <DeleteModal
+          onSubmit={async () => {
+            await handleDelete(deleting.id)
+            setDeleting(null)
+          }}
+          onCancel={() => {
+            setDeleting(null)
+          }}
+        />
+      )}
     </div>
   )
 }
