@@ -1,0 +1,8 @@
+@import './variables';
+@import './mixins';
+
+body {
+  background-color: $gray-bg;
+  color: $text-color;
+  font-family: sans-serif;
+}
